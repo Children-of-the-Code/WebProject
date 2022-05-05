@@ -69,6 +69,15 @@ public class Controller {
             repository.createGroceryFile();
         });
 
+        app.get("/grocery/{groceryID}", ctx->{
+            String groceryIDString = ctx.pathParam("groceryID");
+//            Integer.parseInt is a convenience method in java to convert a string into an integer
+//            you might notice that Integer is a class, but we never instantiate it -
+//            because parseInt is a static method
+            int groceryID = Integer.parseInt(groceryIDString);
+//            instead of me implementing, try getting a specific grocery id item yourself by creating the proper DAO method
+        });
+
 
 
 

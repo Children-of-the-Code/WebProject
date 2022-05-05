@@ -1,0 +1,17 @@
+today we worked on our experience with files to made a fully functional grocery list backend...
+so what you work on next should depend on your self percieved experience
+if you want more array problems:
+
+word.substring - return an array that is only part of the word - batman.substring(3) = "bat"
+batman.substring(3,6) = "man"
+
+we encounter in this "method overloading"  - having the same method name with different method signature
+thanks to the variation in parameters
+
+deleteAll(char) - delete all occurrences of a specific char
+
+toUppercase(), toLowercase - see if you can solve this with just math using chars (remember, again, that chars
+are numbers and that there is a finite distance between a and A)
+
+if you would like to expand on a web api and either add more endpoints or complexity to grocery list, or create
+your own api, go for it
