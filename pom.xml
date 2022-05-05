@@ -7,10 +7,48 @@
     <groupId>org.example</groupId>
     <artifactId>WebProject</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <!--
+    Maven is what we call a dependency management and build tool..
+    It allows us to do a few things
+    1 - configure our project build
+    for instance, we can package to a jarfile (which is essentially a single file that contains all of our
+    classes that can be transported and run anywhere)
+    it can also change the version of java we use to build this
 
+    2 - dependency management
+    realistically, we're building close to nothing from scratch when we are developing something real
+    we need a way to bring in external dependencies..
+    maven has a remote repository similar to github where developers publish tools that maven
+    can automatically download to our computer to a folder called the m2 folder
+
+    POM.xml stands for Project Object Model and is the central file of maven
+    -->
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
     </properties>
+    <!-- https://mvnrepository.com/artifact/io.javalin/javalin -->
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/io.javalin/javalin -->
+        <dependency>
+            <groupId>io.javalin</groupId>
+            <artifactId>javalin</artifactId>
+            <version>4.5.0.RC0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.31</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.1</version>
+        </dependency>
+
+    </dependencies>
+
+
 
 </project>
