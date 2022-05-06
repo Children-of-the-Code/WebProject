@@ -9,13 +9,15 @@ public class Controller {
         GroceryDataAccessObject repository = new GroceryDataAccessObject();
         Javalin app = Javalin.create();
 
+
         app.start(5000);
 
 //        an endpoint.. a certain response is expected by reaching a particular url
         app.get("/", ctx->{
-                ctx.header("Access-Control-Allow-Origin", "*");
-        ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-        ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+                    ctx.header("Access-Control-Allow-Origin", "*");
+                    ctx.header("Access-Control-Allow-Credentials", "true");
+                    ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+                    ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
         ctx.result("Hello server!");
     }
@@ -31,8 +33,9 @@ public class Controller {
 //        "you have something that we will call 'ctx', and we are defining what you should do to it
         app.get("/grocery/", ctx->
                 {ctx.header("Access-Control-Allow-Origin", "*");
-                    ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-                    ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+                    ctx.header("Access-Control-Allow-Credentials", "true");
+                    ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+                    ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 
 //                    GET all grocery list items (when we run to the store)
@@ -55,8 +58,9 @@ public class Controller {
         app.post("/grocery/", ctx ->
         {
             ctx.header("Access-Control-Allow-Origin", "*");
-            ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-            ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+            ctx.header("Access-Control-Allow-Credentials", "true");
+            ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+            ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 //            POST a new grocery list item (when we run out of milk)
 //            we need to get a JSON out of the request body... this is surprisingly difficult
@@ -76,8 +80,9 @@ public class Controller {
         app.delete("/grocery/", ctx ->
         {
             ctx.header("Access-Control-Allow-Origin", "*");
-            ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-            ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+            ctx.header("Access-Control-Allow-Credentials", "true");
+            ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+            ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 //            DELETE all grocery items (when we checkout)
             repository.deleteGroceryList();
@@ -85,8 +90,9 @@ public class Controller {
 
         app.get("/grocery/{groceryID}", ctx->{
             ctx.header("Access-Control-Allow-Origin", "*");
-            ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-            ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+            ctx.header("Access-Control-Allow-Credentials", "true");
+            ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+            ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
             String groceryIDString = ctx.pathParam("groceryID");
 //            Integer.parseInt is a convenience method in java to convert a string into an integer
