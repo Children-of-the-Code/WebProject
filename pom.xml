@@ -24,8 +24,8 @@
     POM.xml stands for Project Object Model and is the central file of maven
     -->
     <properties>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <!-- https://mvnrepository.com/artifact/io.javalin/javalin -->
 
