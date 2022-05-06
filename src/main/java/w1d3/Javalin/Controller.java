@@ -7,7 +7,9 @@ public class Controller {
     public static void main(String[] args) {
 
         GroceryDataAccessObject repository = new GroceryDataAccessObject();
-        Javalin app = Javalin.create();
+        Javalin app = Javalin.create(config->{
+            config.enableCorsForAllOrigins();
+        });
 
 
         app.start(5000);
@@ -16,7 +18,7 @@ public class Controller {
         app.get("/", ctx->{
                     ctx.header("Access-Control-Allow-Origin", "*");
                     ctx.header("Access-Control-Allow-Credentials", "true");
-                    ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+                    ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
                     ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
         ctx.result("Hello server!");
@@ -34,7 +36,7 @@ public class Controller {
         app.get("/grocery/", ctx->
                 {ctx.header("Access-Control-Allow-Origin", "*");
                     ctx.header("Access-Control-Allow-Credentials", "true");
-                    ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+                    ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
                     ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 
@@ -59,7 +61,7 @@ public class Controller {
         {
             ctx.header("Access-Control-Allow-Origin", "*");
             ctx.header("Access-Control-Allow-Credentials", "true");
-            ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+            ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
             ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 //            POST a new grocery list item (when we run out of milk)
@@ -81,7 +83,7 @@ public class Controller {
         {
             ctx.header("Access-Control-Allow-Origin", "*");
             ctx.header("Access-Control-Allow-Credentials", "true");
-            ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+            ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
             ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 //            DELETE all grocery items (when we checkout)
@@ -91,7 +93,7 @@ public class Controller {
         app.get("/grocery/{groceryID}", ctx->{
             ctx.header("Access-Control-Allow-Origin", "*");
             ctx.header("Access-Control-Allow-Credentials", "true");
-            ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+            ctx.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
             ctx.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
             String groceryIDString = ctx.pathParam("groceryID");
