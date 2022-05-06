@@ -43,7 +43,7 @@ public class Controller {
         }
         );
 
-        app.put("/grocery/", ctx ->
+        app.post("/grocery/", ctx ->
         {
 //            POST a new grocery list item (when we run out of milk)
 //            we need to get a JSON out of the request body... this is surprisingly difficult
@@ -64,9 +64,6 @@ public class Controller {
         {
 //            DELETE all grocery items (when we checkout)
             repository.deleteGroceryList();
-        });
-        app.post("/grocery/", ctx -> {
-            repository.createGroceryFile();
         });
 
         app.get("/grocery/{groceryID}", ctx->{

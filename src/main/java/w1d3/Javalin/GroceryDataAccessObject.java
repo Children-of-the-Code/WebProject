@@ -12,9 +12,13 @@ CRUD
 many of our applications are CRUD applications
  */
 public class GroceryDataAccessObject {
+
     File file;
+    boolean fileEmpty;
+
     public GroceryDataAccessObject(){
         file = new File("src/main/resources/grocery.txt");
+        fileEmpty = false;
     }
     public GroceryItem[] getAllGroceryItems() throws IOException {
         BufferedReader groceryReader = new BufferedReader(new FileReader(file));
@@ -23,13 +27,18 @@ public class GroceryDataAccessObject {
         int numberOfItems = 0;
         do{
             readLine = groceryReader.readLine();
-            if(readLine != null) {
+            if(readLine != null && !readLine.equals("")) {
                 groceryItems[numberOfItems] = new GroceryItem(readLine);
                 numberOfItems++;
             }
         }while(readLine!=null);
 //        sending an array with empty spaces at the end is kind of weird, so until we talk about collections,
 //        we have to truncate our array
+
+        if(numberOfItems==0){
+            fileEmpty = true;
+        }
+
         GroceryItem[] truncatedList = new GroceryItem[numberOfItems];
         for(int i = 0; i< numberOfItems ; i++){
             truncatedList[i] = groceryItems[i];
@@ -40,14 +49,16 @@ public class GroceryDataAccessObject {
     }
     public void deleteGroceryList() throws IOException {
         file.delete();
+        fileEmpty = true;
     }
     public void addGroceryItem(GroceryItem g) throws IOException {
         BufferedWriter groceryWriter = new BufferedWriter(new FileWriter(file, true));
-        groceryWriter.write("\n"+g.getItemName());
+        if(!fileEmpty){
+            groceryWriter.write("\n");
+        }
+        groceryWriter.write(g.getItemName());
+        fileEmpty = false;
         groceryWriter.close();
 
-    }
-    public void createGroceryFile() {
-        file = new File("src/main/resources/grocery.txt");
     }
 }
