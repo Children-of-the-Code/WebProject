@@ -8,11 +8,17 @@ public class Controller {
 
         GroceryDataAccessObject repository = new GroceryDataAccessObject();
         Javalin app = Javalin.create();
+
         app.start(5000);
 
 //        an endpoint.. a certain response is expected by reaching a particular url
-        app.get("/", ctx->
-            ctx.result("Hello server!")
+        app.get("/", ctx->{
+                ctx.header("Access-Control-Allow-Origin", "*");
+        ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+        ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+
+        ctx.result("Hello server!");
+    }
         );
 //        what the part with -> is is called a lambda expression
 //        you can think of as alternative way of writing methods
@@ -24,7 +30,10 @@ public class Controller {
 //        what the lambda function is saying: we're passing some behavior along that says
 //        "you have something that we will call 'ctx', and we are defining what you should do to it
         app.get("/grocery/", ctx->
-                {
+                {ctx.header("Access-Control-Allow-Origin", "*");
+                    ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+                    ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+
 
 //                    GET all grocery list items (when we run to the store)
 
@@ -45,6 +54,10 @@ public class Controller {
 
         app.post("/grocery/", ctx ->
         {
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+            ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+
 //            POST a new grocery list item (when we run out of milk)
 //            we need to get a JSON out of the request body... this is surprisingly difficult
 //            luckily, the jackson object mapper dependency
@@ -62,11 +75,19 @@ public class Controller {
 //        eg CRUD a single item from a resource (like CRUD a website.com/user/208371948)
         app.delete("/grocery/", ctx ->
         {
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+            ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+
 //            DELETE all grocery items (when we checkout)
             repository.deleteGroceryList();
         });
 
         app.get("/grocery/{groceryID}", ctx->{
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+            ctx.header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
+
             String groceryIDString = ctx.pathParam("groceryID");
 //            Integer.parseInt is a convenience method in java to convert a string into an integer
 //            you might notice that Integer is a class, but we never instantiate it -
